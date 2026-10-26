@@ -1,0 +1,636 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>XULAB COLLECTIVE // Manifesto</title>
+    <link rel="icon" href="xulab_logo.png" type="image/png">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg-color: #0A0A0C;
+            --card-bg: #121216;
+            --btn-bg: #18181E;
+            --btn-hover: #22222A;
+            --border-color: #282832;
+            --crimson: #E6192E;
+            --cyan: #00FFCC;
+            --text-main: #F0F0F4;
+            --text-muted: #B0B0BC;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            background-color: var(--bg-color);
+            color: var(--text-main);
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+            line-height: 1.75;
+            min-height: 100vh;
+            padding: 36px 20px 70px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .container {
+            max-width: 720px;
+            width: 100%;
+        }
+
+        /* Top Bar: Logo + Language Switcher */
+        .top-row {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 20px;
+        }
+
+        .brand {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .brand img {
+            width: 44px;
+            height: 44px;
+            border-radius: 10px;
+            border: 1px solid var(--crimson);
+        }
+
+        .brand-info {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .brand-title {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 15px;
+            font-weight: 700;
+            color: #ffffff;
+            letter-spacing: 0.8px;
+            line-height: 1.2;
+        }
+
+        .brand-title span {
+            color: var(--crimson);
+        }
+
+        .coord-tag {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 11px;
+            color: var(--text-muted);
+            letter-spacing: 0.3px;
+        }
+
+        .lang-switch {
+            display: inline-flex;
+            background: var(--card-bg);
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            overflow: hidden;
+        }
+
+        .lang-btn {
+            background: transparent;
+            color: var(--text-muted);
+            border: none;
+            padding: 8px 16px;
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 13px;
+            font-weight: 700;
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+
+        .lang-btn.active {
+            background: var(--crimson);
+            color: #ffffff;
+        }
+
+        /* Banner */
+        .banner-wrap {
+            width: 100%;
+            border-radius: 14px;
+            overflow: hidden;
+            border: 1px solid var(--border-color);
+            margin-bottom: 14px;
+        }
+
+        .banner-wrap img {
+            width: 100%;
+            display: block;
+        }
+
+        /* Terminal Subtitle Under Image */
+        .terminal-sub {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 12px;
+            color: var(--text-muted);
+            background: #0F0F13;
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            padding: 10px 14px;
+            margin-bottom: 14px;
+            text-align: center;
+            letter-spacing: 0.5px;
+        }
+
+        .terminal-sub strong {
+            color: var(--crimson);
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        /* Top Jump Button to Downloads & Discord */
+        .jump-hint {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 12px;
+            width: 100%;
+            padding: 15px 20px;
+            margin-bottom: 26px;
+            border-radius: 12px;
+            background: rgba(0, 255, 204, 0.09);
+            border: 1px solid var(--cyan);
+            color: #ffffff;
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 13.5px;
+            font-weight: 700;
+            text-decoration: none;
+            transition: all 0.22s ease;
+            text-align: center;
+            box-shadow: 0 4px 18px rgba(0, 255, 204, 0.12);
+        }
+
+        .jump-hint i {
+            color: var(--cyan);
+            font-size: 15px;
+            animation: bounceDown 1.8s infinite;
+        }
+
+        .jump-hint:hover {
+            background: rgba(0, 255, 204, 0.18);
+            transform: translateY(-2px);
+            box-shadow: 0 6px 22px rgba(0, 255, 204, 0.25);
+        }
+
+        @keyframes bounceDown {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(3px); }
+        }
+
+        /* Manifesto Content */
+        .manifesto-box {
+            background: var(--card-bg);
+            border: 1px solid var(--border-color);
+            border-radius: 16px;
+            padding: 36px 32px;
+            margin-bottom: 28px;
+        }
+
+        @media (max-width: 600px) {
+            .manifesto-box {
+                padding: 24px 18px;
+            }
+        }
+
+        .manifesto-title {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 20px;
+            font-weight: 700;
+            color: #ffffff;
+            margin-bottom: 18px;
+            letter-spacing: 0.5px;
+        }
+
+        .manifesto-title span {
+            color: var(--crimson);
+        }
+
+        .manifesto-lead {
+            border-left: 3px solid var(--crimson);
+            background: rgba(230, 25, 46, 0.08);
+            padding: 16px 20px;
+            border-radius: 0 10px 10px 0;
+            font-size: 16px;
+            font-weight: 600;
+            color: #ffffff;
+            margin-bottom: 28px;
+        }
+
+        .clause {
+            margin-bottom: 24px;
+        }
+
+        .clause:last-child {
+            margin-bottom: 0;
+        }
+
+        .clause-title {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 14px;
+            font-weight: 700;
+            color: var(--crimson);
+            margin-bottom: 6px;
+            display: block;
+        }
+
+        .clause p {
+            font-size: 15.5px;
+            color: var(--text-muted);
+        }
+
+        .clause strong {
+            color: var(--text-main);
+        }
+
+        /* Direct Download Card for Normal Practitioners */
+        .download-box {
+            background: var(--card-bg);
+            border: 1px solid var(--cyan);
+            border-radius: 14px;
+            padding: 22px 24px;
+            margin-bottom: 16px;
+        }
+
+        .download-header {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 14px;
+            font-weight: 700;
+            color: var(--cyan);
+            margin-bottom: 6px;
+            letter-spacing: 0.5px;
+        }
+
+        .download-desc {
+            font-size: 14px;
+            color: var(--text-muted);
+            margin-bottom: 16px;
+        }
+
+        .os-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(195px, 1fr));
+            gap: 10px;
+            margin-bottom: 12px;
+        }
+
+        .os-btn {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            padding: 14px 14px;
+            background: rgba(0, 255, 204, 0.08);
+            border: 1px solid var(--cyan);
+            border-radius: 10px;
+            color: #ffffff;
+            text-decoration: none;
+            font-size: 14px;
+            font-weight: 600;
+            transition: all 0.2s ease;
+            text-align: center;
+        }
+
+        .os-btn i {
+            color: var(--cyan);
+            font-size: 17px;
+        }
+
+        .os-btn:hover {
+            background: rgba(0, 255, 204, 0.18);
+            transform: translateY(-2px);
+            box-shadow: 0 4px 16px rgba(0, 255, 204, 0.2);
+        }
+
+        .releases-sublink {
+            display: block;
+            text-align: center;
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 12px;
+            color: var(--text-muted);
+            text-decoration: none;
+        }
+
+        .releases-sublink:hover {
+            color: #ffffff;
+            text-decoration: underline;
+        }
+
+        /* Links Section Below Manifesto */
+        .links-container {
+            display: flex;
+            flex-direction: column;
+            gap: 14px;
+            width: 100%;
+        }
+
+        .link-btn {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background-color: var(--btn-bg);
+            color: var(--text-main);
+            text-decoration: none;
+            padding: 18px 20px;
+            border-radius: 12px;
+            font-size: 16px;
+            font-weight: 600;
+            transition: all 0.25s ease;
+            border: 1px solid var(--border-color);
+            position: relative;
+        }
+
+        .link-btn i {
+            position: absolute;
+            left: 22px;
+            font-size: 20px;
+        }
+
+        .link-btn:hover {
+            background-color: var(--btn-hover);
+            transform: translateY(-2px);
+            border-color: var(--text-main);
+        }
+
+        .btn-discord {
+            border-color: var(--crimson);
+            background-color: rgba(230, 25, 46, 0.12);
+        }
+        .btn-discord i {
+            color: var(--crimson);
+        }
+        .btn-discord:hover {
+            border-color: var(--crimson);
+            background-color: rgba(230, 25, 46, 0.22);
+            box-shadow: 0 4px 18px rgba(230, 25, 46, 0.25);
+        }
+
+        footer {
+            margin-top: 40px;
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 12px;
+            color: #666;
+            text-align: center;
+        }
+
+        /* Language Toggle Visibility */
+        [data-lang="en"] { display: none; }
+        body.lang-en [data-lang="tr"] { display: none !important; }
+        body.lang-en [data-lang="en"] { display: block !important; }
+        body.lang-en span[data-lang="en"] { display: inline !important; }
+        body.lang-tr span[data-lang="tr"] { display: inline !important; }
+    </style>
+</head>
+<body class="lang-tr">
+
+    <div class="container">
+
+        <!-- TOP ROW: LOGO + LANGUAGE SWITCH BUTTON -->
+        <div class="top-row">
+            <div class="brand">
+                <img src="xulab_logo.png" alt="Xulab Logo">
+                <div class="brand-info">
+                    <div class="brand-title">XULAB <span>//</span> COLLECTIVE</div>
+                    <div class="coord-tag">[ 21.400° N, 89.516° W // K-T BOUNDARY ]</div>
+                </div>
+            </div>
+            <div class="lang-switch">
+                <button class="lang-btn active" id="btn-tr" onclick="setLang('tr')">TR</button>
+                <button class="lang-btn" id="btn-en" onclick="setLang('en')">EN</button>
+            </div>
+        </div>
+
+        <!-- BANNER -->
+        <div class="banner-wrap">
+            <img src="xulab_banner.png" alt="Xulab Collective">
+        </div>
+
+        <!-- COMPACT TERMINAL CAPTION UNDER IMAGE -->
+        <div class="terminal-sub">
+            <strong>XULAB</strong> // OPEN-SOURCE PRODUCTION COLLECTIVE &amp; SHARED R&amp;D
+        </div>
+
+        <!-- SUBTLE TOP DIRECTION TO DOWNLOADS & REPOS BELOW -->
+        <a href="#links" class="jump-hint">
+            <i class="fa-solid fa-arrow-down"></i>
+            <span data-lang="tr">VCut2DAW İndirme, Discord ve GitHub Bağlantılarına İn</span>
+            <span data-lang="en">Jump to VCut2DAW Download, Discord &amp; GitHub Links</span>
+            <i class="fa-solid fa-arrow-down"></i>
+        </a>
+
+        <!-- TURKISH MANIFESTO -->
+        <article class="manifesto-box" data-lang="tr">
+            <h1 class="manifesto-title">TR <span>//</span> XULAB MANİFESTOSU</h1>
+
+            <div class="manifesto-lead">
+                Dijital emekçiler için, sermaye ve yazılım tekellerine karşı; yapay zeka, teknoloji ve açık kaynak ile donanmış medya ve post-prodüksiyon teknoloji üretim kolektifi.
+            </div>
+
+            <div class="clause">
+                <span class="clause-title">0x00. KALDIRAÇ VE GENEL ZEKA</span>
+                <p>Yazılım, sinyal işleme ve makine zekası; literatürde <em>General Intellect</em> olarak tanımlanan, insanlığın ortak emeğiyle birikmiş bilimsel ve teknik bilginin kristalleşmiş halidir. Yapay zeka ve yazılım başlı başına bir düşman değildir; güçlü bir kaldıraçtır. Sermaye tekellerinin eline bırakılırsa vasıfsızlaştırma, ücret kırma ve tasfiye aracına dönüşür. Açık kaynak kod ve lokal yazılımla emekçinin eline geçtiğinde ise özgürleştirici gücü açığa çıkar. <strong>Yapay zeka sayesinde okuma yazma bilen herkes yazılım geliştirebilir ve dönüştürebilir; her gün yazılımla iç içe çalışan bir meslek grubu olarak pasif kalmak veya korkmak için hiçbir gerekçemiz yoktur.</strong></p>
+            </div>
+
+            <div class="clause">
+                <span class="clause-title">0x01. ANGARYANIN REDDİ VE İŞÇİ OTONOMİSİ</span>
+                <p>Ses, kurgu, VFX ve medya post-prodüksiyonu gibi dijital emek sektörleri için derin otomasyon geri döndürülemez bir eşiktir ve bizzat üreticiler tarafından sahiplenilmek zorundadır. Otonom üretim ve işçi inisiyatifi geleneğinden beslenerek, sırf geleneksel stüdyolar saat başı fatura kesebiliyor diye mekanik angaryayı kutsamayı reddediyor; herkesi doğrudan gerçek değer üretmeye çağırıyoruz. Yapay zeka ve sermaye tekellerinin emekçileri sömürmesi ve işsiz bırakması karşısında çözüm iş dilenmek veya sermayenin insafına sığınmak değildir; yüksek teknolojiyle donanarak kolektifte yan yana üretmek ve kendi ayaklarımız üzerinde durmaktır. <strong>Yapay zeka kullanan tekellerin çalışanlara ihtiyacı kalmıyorsa; yapay zeka gücünü ve açık kaynağı arkasına alan işçilerin de patronlara ihtiyacı yoktur.</strong></p>
+            </div>
+
+            <div class="clause">
+                <span class="clause-title">0x02. TEMİZ-ODA MİMARİSİ, AÇIK KAYNAK VE LOKAL SİLİKON</span>
+                <p>Medya üretiminin kapalı tekellerini; <strong>birlikte çalışabilirlik protokol analizi, temiz-oda mimarisi ve sıfırdan yazılım geliştirme</strong> yöntemleriyle aşıyoruz. Post-prodüksiyon araçlarını açık kaynaklı olarak yeniden inşa ediyor, doğru lisanslama ve kademeli yayın stratejisiyle <strong>dijital üretim araçlarını bizzat üreticilere geri veriyoruz</strong>. Nihai hedefimiz, tüm post-prodüksiyon boru hattını kapalı yazılım ve bulut rantından çıkartıp <strong>lokal yapay zeka ve lokal donanım</strong> üzerinde tam kapasite çalışacak şekilde kurmak; üreticinin verisi ve emeğinin kendi diskinin dışına hiç çıkmadığı tam bağımsız bir mimariye ulaşmaktır.</p>
+            </div>
+
+            <div class="clause">
+                <span class="clause-title">0x03. ORTAK AR-GE HAVUZU, AÇIK EĞİTİM VE ÜRETİCİ MECLİSİ</span>
+                <p><strong>Xulab</strong>, altında hem tamamen ücretsiz projelerin hem de gelir paylaşımlı çift lisanslı projelerin açık kaynak çekirdekle çalıştığı <strong>üretim kolektifi ve ortak AR-GE havuzudur</strong>. Post-prodüksiyon ve özellikle ses alanına odaklanmış bir açık kaynak ekibiyiz; tüm dijital emekçiler ve dünyadaki diğer açık kaynak kolektifleri ile dayanışma halindeyiz. Meslek sırrı adı altında yürütülen lonca ketumluğunu yıkıyor; ortak AR-GE havuzumuz ve açık mesleki eğitimlerimizle <strong>bilgiyi engelsizce herkese yayıyoruz</strong>. <strong>Aramıza katılmak için kodlama bilmenize, mühendislik geçmişine sahip olmanıza, teknik bir yeterlilik kanıtlamanıza veya herhangi bir gruba, zümreye ya da çevreye ait olmanıza gerek yoktur. Xulab’da kimlik ve diploma bekçiliğine yer verilmez; sıfırdan gelip öğrenmek, soru sormak ve birlikte üretmek isteyen herkese kapımız sonuna kadar açıktır. Sürekli öğrenmek, ortak yapı altında herkesle omuz omuza üretmek ve açık dayanışma içinde hareket etmek şiddetle teşvik edilir.</strong> Yalnızca projelerin sulandırılmasını veya şirketlerce ele geçirilmesini önlemek adına, <strong>Üretici Meclisi</strong>’ne dahil olmak ve gelir havuzundan pay almak somut mühendislik katkısına, kolektif disipline ve açık onay mekanizmasına tabidir <em>[1]</em>.</p>
+            </div>
+
+            <div class="clause">
+                <span class="clause-title">0x04. SERMAYEYİ AŞMAK: REKABET İLE PİYASAYI DÖNÜŞTÜRMEK</span>
+                <p>Yapay zeka araçları medya sektöründeki büyük sermaye ihtiyacını ortadan kaldırarak tarihsel bir fırsat açmıştır; kendi film, dizi ve medya üretimimizi aracısız olarak bizzat kendimizin yapması artık tamamen mümkündür. Bozuk bir düzende kırıntı pazarlığı yapmak yerine kendi bağımsız üretim zeminimizi kuruyor ve aracıyı işlevsiz kılıyoruz. Xulab’ın açık kaynak boru hattını ve maksimum teknolojik kaldıracı kullanan 10–25 kişilik otonom meslektaş ekipleri, hantal stüdyoların hızını ve kalitesini aşarak doğrudan içerik üretir ve post-prodüksiyon süreçlerini yürütür; tekelci düzeni bizzat rekabet ile piyasada geride bırakır. <strong>Projeden elde edilen kazanç, aracı sermayeye gitmeden doğrudan işi üreten aktif proje ekibinde kalır. Liyakati, zanaatı ve teknolojisi olan üreticiler; üretime hiçbir değer katmadan sadece sermaye aracılığıyla emek sömüren masabaşı düzenini yenecektir.</strong> Kooperatif iş modeli, meslektaş dayanışması ve açık kaynak kaldıracıyla yürütülen her türlü adil rekabet açıktır ve teşvik edilir.</p>
+            </div>
+
+            <div class="clause">
+                <span class="clause-title">0x05. LİSANS DOKTRİNİ // SAF AGPLv3, COPYFARLEFT VE ÜRETİM SINIRLI ÇİFT LİSANS</span>
+                <p><strong>Xulab tavizsiz olarak açık kod geliştirir:</strong> Şirketlere bedava teknoloji hediye eden izin verici lisansları reddediyoruz. Taban araçlarımızda ve ortak protokol kütüphanelerimizde bulut ve SaaS kaçaklarını engellemek için temel lisansımız <strong>Saf <code>AGPLv3</code></strong>’tür. Bununla birlikte, Dmytri Kleiner’ın <em>Copyfarleft</em> teorisinde işaret ettiği piyasa gerçeğinin ve klasik açık kaynak lisanslarının kurumsal iç kullanımdaki açığının farkındayız: Sektörel rekabet yaratan ileri teknoloji araçların sadece <code>AGPLv3</code> ile korumasızca açılması, stüdyo tekellerinin bu araçları kendi iç iş akışlarında bedava çalıştırarak taşeron fiyatlarını kırmasına ve emekçinin gelir kaybına zemin hazırlayabilir. Bu nedenle sektörel rekabet yaratan ileri teknoloji motorlarımızda, açık sürümlerimizde ve AI ağırlıklarımızda <strong>derin SDK mimari kilidiyle birleşen <code>Copyfarleft</code> Ciro Sınırlı Kaynağı Açık Lisanslama ve <code>Dual-License</code> Çift Lisans</strong> yapısını uygularız. Kaynak kodu bağımsız emekçilere, öğrencilere, kolektiflere ve küçük meslektaş ekiplerine tamamen açık ve ücretsizdir; ancak belirlenen ciro ve ölçek sınırını aşan kurumsal stüdyolar, aracı yalnızca kendi iç iş akışlarında kullansalar dahi ticari lisans satın almak zorundadır. <strong>Açık kaynak geliştirme modeli, piyasadaki şirketlerin yaptığı gibi geliştiriciler üzerinden ücretsiz iş gücü sömürüsü yapmak için asla kullanılmaz:</strong> Xulab çatısı altındaki her tüzel proje, katkı şartlarını en baştan şeffafça açıklamak ve elde ettiği gelir havuzunun belirli bir payını puan sistemiyle doğrudan projede çalışan geliştiricilere geri ödemek zorundadır <em>[1]</em>. Emekçiler tarafından emekçiler için üretilmiş hiçbir bağımsız yazılımla veya geliştiriciyle sorunumuz yoktur; isteyen istediği aracı üretmeye devam etsin. <strong>Burada önemli olan kiminle ve hangi tarafta mücadele ettiğindir: Bizim mücadelemiz kendi emeğini koruyan bağımsız geliştiricilerle değil, üreticiyi sömüren tekelci sermaye ve kapalı ekosistem dayatmasıyladır.</strong></p>
+            </div>
+
+            <div class="clause">
+                <span class="clause-title">0x06. EŞİTLİK, ÖZEL HAYAT VE SİYASET SINIRI</span>
+                <p><strong>Xulab içerisinde ırk, din, dil, cinsiyet, cinsel yönelim veya etnik köken temelinde hiçbir ayrımcılığa, üstünlük iddiasına ve ötekileştirmeye geçit verilmez.</strong> Bununla birlikte Xulab bir ahlak zabıtası veya kimlik mahkemesi değildir: <strong>Kimsenin özel hayatıyla, inancıyla, yaşam tarzıyla veya dışarıdaki sosyal kimliğiyle ilgilenilmez; içeride yalnızca ortak üretim, dayanışma ve ortaya konan emek konuşur.</strong> Duruşumuz ekonomik, mesleki ve sektöreldir: Hedefimiz kendi alanımızda piyasanın ve üretim araçlarının sermaye tekelinden çıkartılmasıdır. <strong>Bu nedenle Xulab içerisinde parti siyasetine, devlet politikasına veya kısır hizip tartışmalarına da izin verilmez.</strong> Toplumsal meseleleri önemsiz gördüğümüz için değil, bu konular proje kapsamı dışında olduğu ve üretim odağımızı dağıtacağı için bu sınır kesindir. Bizim çalışma alanımız nettir: <strong>Üretim araçları, ortak AR-GE ve yüksek teknoloji ile sektörde sermaye tekellerini rekabet yoluyla aşmak ve oyunun kurallarını üreticiler lehine yeniden yazmaktır.</strong></p>
+            </div>
+
+            <div class="clause">
+                <span class="clause-title">0x07. HUKUKİ ÇERÇEVE VE KOMÜNİTE GÜVENLİĞİ</span>
+                <p>Xulab, yalnızca açık kaynak medya ve post-prodüksiyon teknolojileri geliştiren bağımsız bir mühendislik ve üretim kolektifidir. Xulab, kimsenin dışarıdaki bireysel pratiklerini veya dayanışma biçimlerini yargılayan ahlaki bir merci değildir; ancak komünite sağlığını ve bu ortak AR-GE havuzunun hukuki dokunulmazlığını korumak adına <strong>Xulab içerisinde telif ihlali, lisans kırımı, kapalı kod sızıntısı veya hukuk dışı hiçbir paylaşım, düzenleme ve faaliyet yürütülemez; Xulab hukuki sınırların dışındaki aktiviteler için güvenli bir alan değildir.</strong> Bu kural ahlaki bir kınama değil, kolektifin açık, meşru ve güvende kalması için konmuş tavizsiz bir güvenlik sınırıdır; yasal çerçeve dışındaki her türlü pratiğin Xulab’dan tamamen bağımsız, kendi gizliliğini ve sorumluluğunu üstlenen başka mecralarda yürütülmesi gerekir.</p>
+            </div>
+
+            <div class="clause">
+                <span class="clause-title">0x08. DİNOZORLAR ÇAĞININ SONU // KÜRESEL ÇAĞRI</span>
+                <p>Sermayeden iş dilenmiyoruz ve kurtarılmayı beklemiyoruz. <strong>Xulab; binlerce mouse ve klavye tıklaması altında ömrünü harcayan dijital emekçilerin üretimin kontrolünü ele geçirerek aldığı teknolojik intikamdır.</strong> Hem üretici gücü hem de piyasayı, yapay zeka ve açık kaynak teknolojisini fırsat bilerek kökten değiştiriyor; <strong>angarya ve emek sömürüsünü kullanan dinozorlar çağına son veriyoruz.</strong> Dünyanın her yerindeki dijital emekçileri ve bağımsız yazılımcıları kendi araçlarımızı üretmeye ve kendi geleceğimizi bizzat inşa etmeye çağırıyoruz. <strong>Dijital dünyanın bütün emekçileri, yapay zeka ve açık kaynakla birleşin!</strong></p>
+                <p style="margin-top: 18px; font-size: 13px; color: #777782; font-style: italic;">[1] Yönetişim, Üretici Meclisi ve gelir paylaşım havuzu kuralları için: <a href="https://github.com/xulab-collective/.github/blob/main/PROTOCOL.md" target="_blank" style="color: #9e9ea8;">PROTOCOL.md</a> ve <a href="https://github.com/xulab-collective/.github/blob/main/COMMERCIAL_POLICY.md" target="_blank" style="color: #9e9ea8;">COMMERCIAL_POLICY.md</a>.</p>
+            </div>
+        </article>
+
+        <!-- ENGLISH MANIFESTO -->
+        <article class="manifesto-box" data-lang="en">
+            <h1 class="manifesto-title">EN <span>//</span> THE XULAB MANIFESTO</h1>
+
+            <div class="manifesto-lead">
+                For digital workers, against capital and software monopolies: a media and post-production technology collective equipped with AI, technology, and open source.
+            </div>
+
+            <div class="clause">
+                <span class="clause-title">0x00. THE LEVER AND THE GENERAL INTELLECT</span>
+                <p>Software, signal processing, and machine intelligence are the crystallized form of scientific and technical knowledge accumulated through humanity's shared labor, defined in philosophy as the <em>General Intellect</em>. AI and software are a powerful lever. Left in the hands of capital monopolies, they become instruments of deskilling, wage suppression, and displacement. Placed in the hands of workers through open-source code and local software, their liberating power is unleashed. <strong>With AI, anyone who can read and write can build and modify software; as a profession that works with software every single day, we have zero reason to remain passive or afraid.</strong></p>
+            </div>
+
+            <div class="clause">
+                <span class="clause-title">0x01. REJECTION OF DRUDGERY AND WORKER AUTONOMY</span>
+                <p>For digital labor sectors like audio, editing, VFX, and media post-production, deep automation is an irreversible threshold that must be claimed directly by practitioners. Drawing from the tradition of producer autonomy and worker initiative, we refuse to sanctify mechanical drudgery simply because legacy studios bill for it by the hour, and we call on everyone to produce direct value. Faced with exploitation and displacement by AI and capital monopolies, the answer is never to beg for work or rely on the mercy of capital. The answer is to equip ourselves with high technology, produce side by side inside the collective, and stand on our own feet. <strong>If monopolies wielding AI no longer need workers, then workers wielding AI power and open source no longer need bosses.</strong></p>
+            </div>
+
+            <div class="clause">
+                <span class="clause-title">0x02. CLEAN-ROOM ARCHITECTURE, OPEN SOURCE, AND LOCAL SILICON</span>
+                <p>Through <strong>interoperability protocol analysis, clean-room architecture, and ground-up software engineering</strong>, we overcome the closed monopolies of media production. We rebuild post-production tools as open source and, through strategic licensing and phased releases, <strong>return the digital means of production directly to the practitioners</strong>. Our ultimate target is to extract the entire post-production pipeline from closed software and cloud rent, building an architecture that runs at full capacity on <strong>local AI and local hardware</strong> so a practitioner's data and labor never have to leave their own disk.</p>
+            </div>
+
+            <div class="clause">
+                <span class="clause-title">0x03. SHARED R&D POOL, OPEN EDUCATION, AND PRODUCER COUNCIL</span>
+                <p><strong>Xulab</strong> is the <strong>production collective and shared R&D pool</strong> where both 100% free projects and profit-sharing dual-licensed projects operate on an open-source core under common principles. We are an open-source team focused on post-production and audio, standing in solidarity with digital workers and open-source collectives worldwide. We demolish guild secrecy disguised as trade secrets, <strong>spreading knowledge openly to everyone</strong> through our shared R&D pool and open vocational education. <strong>You do not need to know how to code, hold an engineering background, prove prior technical proficiency, or belong to any group, clique, or circle to join us. Inside Xulab, there is zero credential or identity gatekeeping; our doors are wide open to anyone who wants to start from scratch, ask questions, learn, and build together. Continuous learning, building side by side with everyone under a shared structure, and acting in open solidarity are fiercely encouraged.</strong> Solely to prevent dilution or corporate capture, entry into the <strong>Producer Council</strong> and participation in the revenue pool require concrete engineering contributions, collective discipline, and transparent approval <em>[1]</em>.</p>
+            </div>
+
+            <div class="clause">
+                <span class="clause-title">0x04. BYPASSING CAPITAL: TRANSFORMING THE MARKET THROUGH COMPETITION</span>
+                <p>AI tools are shattering the massive capital requirement in the media industry, making it fully possible for us to produce our own films, series, and media directly without middlemen. Rather than bargaining for crumbs inside a broken order, we build our own independent production ground and render the middleman obsolete. Equipped with Xulab's open-source pipeline and maximum technical leverage, autonomous teams of 10 to 25 peers surpass the speed and quality of bloated studios to produce content and execute post-production workflows directly, outcompeting the monopolistic order in the market itself. <strong>Revenue generated from each project remains directly with the active project team that built the work, bypassing middleman capital. Practitioners armed with merit, craft, and technology will prevail over the desk-bound order that adds zero value to production and exploits labor solely through capital.</strong> Every form of fair competition built on cooperative models, peer solidarity, and open-source leverage is open and encouraged.</p>
+            </div>
+
+            <div class="clause">
+                <span class="clause-title">0x05. LICENSING DOCTRINE // STRICT AGPLv3, COPYFARLEFT, AND PRODUCTION-BOUNDED DUAL-LICENSING</span>
+                <p><strong>Xulab builds uncompromisingly in the open:</strong> We reject permissive licenses that gift free technology to corporations. Across our foundational community tools and shared protocol libraries, our baseline license is <strong>Strict <code>AGPLv3</code></strong> to close cloud and SaaS loopholes. At the same time, we recognize the market reality highlighted by Dmytri Kleiner's <em>Copyfarleft</em> theory and the internal-use loophole of standard open-source licenses: releasing high-tech competitive engines under <code>AGPLv3</code> alone allows giant studio monopolies to run those tools internally in their own pipelines for free, slashing subcontractor rates and undercutting workers. Therefore, across our competitive engines, open lite editions, and AI weights, we enforce <strong>deep SDK architectural locks combined with <code>Copyfarleft</code> Revenue-Bounded Source-Available Licensing and Commercial <code>Dual-Licensing</code></strong>. The source code remains completely open and free for independent workers, students, collectives, and small peer teams; however, corporate studios exceeding our revenue and scale thresholds are legally required to purchase a commercial license even for internal pipeline use. <strong>Open development under Xulab will never be used, as it is across the corporate market, to exploit unpaid developer labor:</strong> every incorporated project under the Xulab umbrella must declare its contributing terms upfront and pay back a defined share of its revenue pool directly to contributors through a transparent point system <em>[1]</em>. We have no quarrel with any independent tool or developer building by workers and for workers; let everyone keep building. <strong>What matters here is who you stand with and on which side you fight: our fight is never against independent developers protecting their labor, but against monopolistic capital and closed-ecosystem lock-in.</strong></p>
+            </div>
+
+            <div class="clause">
+                <span class="clause-title">0x06. EQUALITY, PRIVATE LIFE, AND BOUNDARY ON POLITICS</span>
+                <p><strong>Inside Xulab, zero discrimination, supremacy, or exclusion based on race, religion, language, gender, sexual orientation, or ethnicity is tolerated.</strong> At the same time, Xulab is neither a moral police force nor an identity tribunal: <strong>nobody's private life, beliefs, lifestyle, or external social identity is policed or scrutinized; inside the collective, only shared production, solidarity, and contributed craft speak.</strong> Our stance is economic, vocational, and sectoral: our objective is to liberate our industry's market and means of production from capital monopolies. <strong>Therefore, party politics, state politics, and factional disputes are not permitted inside Xulab.</strong> Social questions matter, yet they fall outside our project scope and fracture our productive focus. Our field of action is clear: <strong>overcoming capital monopolies in our sector through competition and rewriting the rules of the industry in favor of practitioners through the means of production, shared R&D, and high technology.</strong></p>
+            </div>
+
+            <div class="clause">
+                <span class="clause-title">0x07. LEGAL FRAMEWORK AND COMMUNITY SECURITY</span>
+                <p>Xulab is an independent engineering and production collective developing open-source media and post-production technologies. Xulab is not a moral authority judging anyone's external individual practices or forms of solidarity; however, to protect the health of the community and the legal integrity of this shared R&D pool, <strong>no copyright infringement, license circumvention, proprietary code leaks, or unlawful distribution, arrangements, or activities may be conducted inside Xulab; Xulab is not a safe space for activities outside the legal framework.</strong> This rule is not a moral condemnation, but an uncompromising security boundary established to keep the collective open, legitimate, and secure; any practice outside the legal framework must be conducted completely independently of Xulab in separate channels that bear their own privacy and responsibility.</p>
+            </div>
+
+            <div class="clause">
+                <span class="clause-title">0x08. THE END OF THE AGE OF DINOSAURS // GLOBAL CALL</span>
+                <p>We do not beg capital for work, and we do not wait to be saved. <strong>Xulab is the technological vengeance of digital workers who have spent their lives beneath thousands of mouse clicks and keystrokes, seizing back control of production.</strong> Seizing AI and open-source technology as our lever, we are transforming both productive power and the market from the root up, <strong>bringing an end to the age of dinosaurs built on drudgery and labor exploitation.</strong> We call upon digital workers and independent developers everywhere to forge our own tools and build our own future with our own hands. <strong>Workers of the digital world, unite with AI and open source!</strong></p>
+                <p style="margin-top: 18px; font-size: 13px; color: #777782; font-style: italic;">[1] For governance, Producer Council, and contributor profit-pool rules, see <a href="https://github.com/xulab-collective/.github/blob/main/PROTOCOL.md" target="_blank" style="color: #9e9ea8;">PROTOCOL.md</a> and <a href="https://github.com/xulab-collective/.github/blob/main/COMMERCIAL_POLICY.md" target="_blank" style="color: #9e9ea8;">COMMERCIAL_POLICY.md</a>.</p>
+            </div>
+        </article>
+
+        <!-- DIRECT DOWNLOAD & FOLLOW LINKS -->
+        <div id="links">
+            <!-- Direct VCut2DAW Download Card for Non-Coders -->
+            <div class="download-box">
+                <div class="download-header">VCut2DAW v1.0 // DIRECT DOWNLOAD // FREE &amp; AGPLv3</div>
+                <p class="download-desc" data-lang="tr">Otomatik Video Cut &amp; EDL'den Pro Tools / DAW Dummy AAF ve 960 PPQ MIDI Marker Aracı. İşletim sisteminizi seçip doğrudan indirin:</p>
+                <p class="download-desc" data-lang="en">Automated Video Cut &amp; EDL to Pro Tools / DAW Dummy AAF &amp; 960 PPQ MIDI Marker Pipeline. Select your OS to download directly:</p>
+
+                <div class="os-grid">
+                    <a href="https://github.com/xulab-collective/VCut2DAW/releases/download/v1.0.2/VCut2DAW.exe" class="os-btn">
+                        <i class="fa-brands fa-windows"></i>
+                        <span>Windows // .exe</span>
+                    </a>
+                    <a href="https://github.com/xulab-collective/VCut2DAW/releases/download/v1.0.2/VCut2DAW_AppleSilicon.dmg" class="os-btn">
+                        <i class="fa-brands fa-apple"></i>
+                        <span>macOS // M1-M4</span>
+                    </a>
+                    <a href="https://github.com/xulab-collective/VCut2DAW/releases/download/v1.0.2/VCut2DAW_Intel.dmg" class="os-btn">
+                        <i class="fa-brands fa-apple"></i>
+                        <span>macOS // Intel</span>
+                    </a>
+                </div>
+
+                <a href="https://github.com/xulab-collective/VCut2DAW/releases/tag/v1.0.2" target="_blank" class="releases-sublink">
+                    <span data-lang="tr">Tüm Sürümler ve Kurulum Notları // GitHub Releases &rarr;</span>
+                    <span data-lang="en">All Releases &amp; macOS Gatekeeper Notes // GitHub Releases &rarr;</span>
+                </a>
+            </div>
+
+            <div class="links-container">
+                <!-- Discord -->
+                <a href="https://discord.gg/ZCFHD5qHgJ" target="_blank" id="discord-link" class="link-btn btn-discord">
+                    <i class="fa-brands fa-discord"></i>
+                    <span data-lang="tr">Xulab Discord // Topluluk ve Ortak AR-GE</span>
+                    <span data-lang="en">Join Xulab Discord // Community &amp; Shared R&amp;D</span>
+                </a>
+
+                <!-- WhatsApp -->
+                <a href="https://whatsapp.com/channel/0029VbEM99jDuMRWtFLqta2f" target="_blank" class="link-btn">
+                    <i class="fa-brands fa-whatsapp"></i>
+                    <span data-lang="tr">Xulab WhatsApp // Duyuru Kanalı</span>
+                    <span data-lang="en">Xulab WhatsApp // Announcement Channel</span>
+                </a>
+
+                <!-- Telegram -->
+                <a href="https://t.me/xulabcollective" target="_blank" class="link-btn">
+                    <i class="fa-brands fa-telegram"></i>
+                    <span data-lang="tr">Xulab Telegram // t.me/xulabcollective</span>
+                    <span data-lang="en">Xulab Telegram // t.me/xulabcollective</span>
+                </a>
+
+                <!-- YouTube -->
+                <a href="https://www.youtube.com/@xulab-collective" target="_blank" class="link-btn">
+                    <i class="fa-brands fa-youtube"></i>
+                    <span data-lang="tr">Xulab YouTube // Açık Eğitim ve Araç Gösterimleri</span>
+                    <span data-lang="en">Xulab YouTube // Open Education &amp; Tool Demos</span>
+                </a>
+
+                <!-- Xulab GitHub Repository -->
+                <a href="https://github.com/xulab-collective" target="_blank" class="link-btn">
+                    <i class="fa-brands fa-github"></i>
+                    <span data-lang="tr">Xulab Collective GitHub // Protokol ve Repolar</span>
+                    <span data-lang="en">Xulab Collective GitHub // Protocol &amp; Repos</span>
+                </a>
+
+                <!-- Founding Architect -->
+                <a href="https://rhinofug.github.io" target="_blank" class="link-btn">
+                    <i class="fa-solid fa-terminal"></i>
+                    <span>Founding Architect: Furkan Utku Gerçik // @Rhinofug</span>
+                </a>
+            </div>
+        </div>
+
+        <footer>
+            XULAB COLLECTIVE // FOUNDING ARCHITECT: @RHINOFUG // GNU AGPLv3
+        </footer>
+
+    </div>
+
+    <script>
+        function setLang(lang) {
+            document.body.className = 'lang-' + lang;
+            document.documentElement.lang = lang;
+            document.getElementById('btn-tr').classList.toggle('active', lang === 'tr');
+            document.getElementById('btn-en').classList.toggle('active', lang === 'en');
+            try { localStorage.setItem('xulab_lang', lang); } catch(e) {}
+        }
+
+        try {
+            const saved = localStorage.getItem('xulab_lang');
+            if (saved === 'en' || saved === 'tr') setLang(saved);
+        } catch(e) {}
+    </script>
+</body>
+</html>
