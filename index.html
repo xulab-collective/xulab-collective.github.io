@@ -327,6 +327,106 @@
             text-decoration: underline;
         }
 
+        /* Newsletter / Just News Subscribe Card */
+        .subscribe-box {
+            background: var(--card-bg);
+            border: 1px solid var(--crimson);
+            border-radius: 14px;
+            padding: 20px 24px;
+            margin-bottom: 16px;
+        }
+
+        .subscribe-top {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 10px;
+            margin-bottom: 6px;
+            flex-wrap: wrap;
+        }
+
+        .subscribe-header {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 14px;
+            font-weight: 700;
+            color: #ffffff;
+            letter-spacing: 0.4px;
+        }
+
+        .subscribe-header i {
+            color: var(--crimson);
+            margin-right: 6px;
+        }
+
+        .subscribe-badge {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 10.5px;
+            color: var(--text-muted);
+            border: 1px solid var(--border-color);
+            padding: 3px 8px;
+            border-radius: 6px;
+            letter-spacing: 0.6px;
+        }
+
+        .subscribe-desc {
+            font-size: 13.5px;
+            color: var(--text-muted);
+            margin-bottom: 14px;
+            line-height: 1.55;
+        }
+
+        .subscribe-form {
+            display: flex;
+            gap: 10px;
+        }
+
+        @media (max-width: 520px) {
+            .subscribe-form {
+                flex-direction: column;
+            }
+            .subscribe-form button {
+                padding: 13px 18px !important;
+            }
+        }
+
+        .subscribe-form input[type="email"] {
+            flex: 1;
+            padding: 13px 15px;
+            background-color: var(--bg-color);
+            border: 1px solid var(--border-color);
+            color: var(--text-main);
+            border-radius: 8px;
+            font-family: 'Inter', sans-serif;
+            font-size: 14px;
+            outline: none;
+            transition: border-color 0.2s ease;
+        }
+
+        .subscribe-form input[type="email"]:focus {
+            border-color: var(--crimson);
+        }
+
+        .subscribe-form button {
+            background-color: var(--crimson);
+            color: #ffffff;
+            border: none;
+            padding: 0 22px;
+            border-radius: 8px;
+            cursor: pointer;
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 12.5px;
+            font-weight: 700;
+            letter-spacing: 0.6px;
+            transition: all 0.2s ease;
+            white-space: nowrap;
+        }
+
+        .subscribe-form button:hover {
+            background-color: #ff243b;
+            transform: translateY(-1px);
+            box-shadow: 0 4px 14px rgba(230, 25, 46, 0.35);
+        }
+
         /* Links Section Below Manifesto */
         .links-container {
             display: flex;
@@ -568,6 +668,29 @@
                 </a>
             </div>
 
+            <!-- Just News? Drop Your Mail Card (Connected to Formspree mjygbjpn) -->
+            <div class="subscribe-box" id="subscribe">
+                <div class="subscribe-top">
+                    <div class="subscribe-header">
+                        <i class="fa-solid fa-envelope"></i>
+                        <span data-lang="tr">JUST NEWS? // SADECE BÜLTEN VE YENİ ARAÇLAR İÇİN MAİL BIRAK</span>
+                        <span data-lang="en">JUST NEWS &amp; RELEASES? // DROP YOUR MAIL</span>
+                    </div>
+                    <span class="subscribe-badge">NO SPAM // DIRECT DROPS</span>
+                </div>
+                <p class="subscribe-desc" data-lang="tr">Topluluk kanallarına girmek istemiyor musunuz? Sadece yeni açık kaynak araçlarımız ve büyük lansman bildirimleri için e-posta adresinizi bırakın.</p>
+                <p class="subscribe-desc" data-lang="en">Don't want to join a community server? Drop your email to receive only major open-source tool releases and flagship early-access alerts.</p>
+
+                <form id="xulab-waitlist-form" class="subscribe-form">
+                    <input type="hidden" name="source" value="xulab-collective.github.io">
+                    <input type="email" name="email" placeholder="Enter your email address..." required>
+                    <button type="submit">
+                        <span data-lang="tr">ABONE OL</span>
+                        <span data-lang="en">SUBSCRIBE</span>
+                    </button>
+                </form>
+            </div>
+
             <div class="links-container">
                 <!-- Discord -->
                 <a href="https://discord.gg/ZCFHD5qHgJ" target="_blank" id="discord-link" class="link-btn btn-discord">
@@ -631,6 +754,36 @@
             const saved = localStorage.getItem('xulab_lang');
             if (saved === 'en' || saved === 'tr') setLang(saved);
         } catch(e) {}
+
+        document.getElementById('xulab-waitlist-form').addEventListener('submit', function(e) {
+            e.preventDefault();
+            var form = e.target;
+            var btn = form.querySelector('button');
+            btn.textContent = '...';
+            btn.style.opacity = '0.7';
+            btn.disabled = true;
+
+            var data = new FormData(form);
+            fetch('https://formspree.io/f/mjygbjpn', {
+                method: 'POST',
+                body: data,
+                headers: { 'Accept': 'application/json' }
+            }).then(function(response) {
+                if (response.ok) {
+                    var isEn = document.body.classList.contains('lang-en');
+                    var msg = isEn
+                        ? 'Subscribed. You will receive direct notifications on major tool releases.'
+                        : 'Kaydınız alındı. Yeni araçlar ve lansmanlarda doğrudan bilgilendirileceksiniz.';
+                    form.innerHTML = '<div style="font-family: \'JetBrains Mono\', monospace; font-size: 12.5px; color: var(--cyan); padding: 8px 0; width: 100%;">' + msg + '</div>';
+                } else {
+                    btn.textContent = 'RETRY';
+                    btn.disabled = false;
+                }
+            }).catch(function() {
+                btn.textContent = 'RETRY';
+                btn.disabled = false;
+            });
+        });
     </script>
 </body>
 </html>
